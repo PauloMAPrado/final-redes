@@ -194,6 +194,19 @@ useradd -m -G users "$USER"
 #Reiniciar o serviço do Samba
 systemctl restart smbd.service
 ```
+<br>
+<h3>
+  4.5. APACHE
+</h3>
+
+```bash
+    #Instalar o APACHE
+    sudo apt install -y apache2
+    #Startando o serviço APACHE
+    sudo systemctl start apache2
+    #Ativando o cervidor
+    sudo systemctl enable apache2
+```
 
 <br>
 
@@ -226,5 +239,37 @@ Download: https://developer.hashicorp.com/vagrant/docs/installation
 Documentação: https://docs.oracle.com/en/virtualization/virtualbox/
 <br>
 Download: https://www.oracle.com/br/virtualization/technologies/vm/downloads/virtualbox-downloads.html
+<br>
+<br>
+
+<h5>APACHE</h5>
+Documentação: https://httpd.apache.org/docs/
+<br>
+Download: https://httpd.apache.org/download.cgi
+<br>
+<br>
+
+<h5>DHCP</h5>
+Documentação: https://learn.microsoft.com/pt-br/windows-server/networking/technologies/dhcp/dhcp-top
+<br>
+<br>
+
+<h5>DNS</h5>
+Documentação:https://learn.microsoft.com/en-us/windows-server/networking/dns/dns-top
+<br>
+<br>
+
+<h5>FTP</h5>
+Documentação: https://docs.digibee.com/documentation/components/file-storage/ftp
+<br>
+<br>
+
+<h5>NFS</h5>
+Documentação: https://docs.kernel.org/admin-guide/nfs/index.html
+<br>
+<br>
+
+<h5>SAMBA</h5>
+Documentação: https://www.samba.org/samba/docs/
 <br>
 <br>
