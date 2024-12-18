@@ -1,133 +1,59 @@
-<h3> FTP </h3>
-<hr>
-<h4>> O que é FTP?</h4>
-<p>Um servidor FTP (File Transfer Protocol) é uma solução prática para compartilhar arquivos, permitindo armazenamento e acesso facilitado. É ideal para armazenar arquivos destinados à leitura.</p>
-<br>
-<hr>
+# Tutorial: Instalação e Configuração do FTP no Linux
 
-<h4>Instalação</h4>
+---
 
-```bash
-#Instalando o serviço FTP
-apt-get install -y proftpd
-#Criando o diretório que será compartilhado
-if ! [ -d "~/share" ]; then
-    mkdir -p ~/share
-    echo "Diretório /share criado"
-else
-    echo "Diretório /share já existe"
-fi
-#Renomeando arquivo .conf
-mv /etc/proftpd/proftpd.conf /etc/proftpd/proftpd.conf.bkp
-#Copiando arquivo .conf
-cp /vagrant_config/FTP/proftpd.conf /etc/proftpd/proftpd.conf
-# Reiniciando o serviço
-service proftpd restart
-#Criando usuário "webmaster"
-if ! id "webmaster" &>/dev/null; then
-    useradd webmaster -d /root/share -s /bin/false
-    echo "Usuário webmaster criado"
-else
-    echo "Usuário webmaster já existe"
-fi
-#Colocando o usuário "webmaster" como dono do diretório
-chown webmaster -R ~/share
-```
+## Passo 1: Instalar o Servidor FTP
+1. **Atualize os pacotes do sistema:**
+   ```bash
+   sudo apt update
+   ```
 
-<br>
-<hr>
+2. **Instale o ProFTPD:**
+   ```bash
+   sudo apt install proftpd -y
+   ```
 
-<h4>> Código proftpd.conf </h4>
+3. **Verifique o status do serviço:**
+   ```bash
+   sudo service proftpd status
+   ```
 
-```bash
-Include /etc/proftpd/modules.conf
+---
 
-UseIPv6 off
+## Passo 2: Configurar o ProFTPD
+1. **Edite o arquivo de configuração principal:**
+   ```bash
+   sudo nano /etc/proftpd/proftpd.conf
+   ```
 
-<IfModule mod_ident.c>
-  IdentLookups off
-</IfModule>
-
-ServerName "FTP Server"
-ServerType standalone
-DeferWelcome off
-
-DefaultServer on
-ShowSymlinks on
-
-TimeoutNoTransfer 600
-TimeoutStalled 600
-TimeoutIdle 1200
-
-DisplayLogin welcome.msg
-DisplayChdir .message true
-ListOptions "-l"
-
-DenyFilter \*.*/
-
-DefaultRoot ~
-
-RequireValidShell off
-
-Port 21
-
-<IfModule mod_dynmasq.c>
-</IfModule>
-
-MaxInstances 30
-
-User proftpd
-Group nogroup
-
-Umask 022 022
-
-AllowOverwrite on
-
-TransferLog /var/log/proftpd/xferlog
-SystemLog /var/log/proftpd/proftpd.log
-
-<IfModule mod_quotatab.c>
-QuotaEngine off
-</IfModule>
-
-<IfModule mod_ratio.c>
-Ratios off
-</IfModule>
-
-<IfModule mod_delay.c>
-DelayEngine on
-</IfModule>
-
-<IfModule mod_ctrls.c>
-ControlsEngine off
-ControlsMaxClients 2
-ControlsLog /var/log/proftpd/controls.log
-ControlsInterval 5
-ControlsSocket /var/run/proftpd/proftpd.sock
-</IfModule>
-
-<IfModule mod_ctrls_admin.c>
-AdminControlsEngine off
-</IfModule>
-
- <Anonymous ~ftp>
-   User ftp
-   Group nogroup
-
-   UserAlias anonymous ftp
-
+2. **Habilite as seguintes opções (descomente e ajuste conforme necessário):**
+   ```ini
+   ServerName "Servidor FTP"
+   DefaultRoot ~
    RequireValidShell off
+   ```
+   
 
-   MaxClients 10
+3. **Salve e feche o arquivo:** Pressione `Ctrl+O`, depois `Enter` e `Ctrl+X`.
 
-   DisplayLogin welcome.msg
-   DisplayChdir .message
-   <Directory ~/share>
-     <Limit READ WRITE>
-       AllowAll
-     </Limit>
-   </Directory>
- </Anonymous>
- 
-Include /etc/proftpd/conf.d/
-```
+4. **Reinicie o serviço para aplicar as mudanças:**
+   ```bash
+   sudo service proftpd restart
+   ```
+
+---
+
+## Passo 3: Configurar Usuários Locais (Opcional)
+1. **Crie um usuário para o FTP:**
+   ```bash
+   sudo adduser ftpuser
+   ```
+   Siga as instruções para definir uma senha.
+
+2. **Configure o diretório inicial do usuário:**
+   ```bash
+   sudo mkdir -p /home/ftpuser/ftp/upload
+   sudo chown -R ftpuser:ftpuser /home/ftpuser/ftp
+   sudo chmod -R 755 /home/ftpuser/ftp
+   ```
+
