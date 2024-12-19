@@ -8,18 +8,41 @@
 <hr>
 <h4>> Instalação</h4>
 
-```bash
-#Atualizando a máquina
-apt-get update
-#Instalando o serviço DHCP
-apt-get install -y isc-dhcp-server
-#Renomeando o arquivo .conf
-mv /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.bkp
-#Copiando o arquivo de configuração
-cp /vagrant_config/DHCP/dhcpd.conf /etc/dhcp/dhcpd.conf
-#Reiniciando o serviço
-service isc-dhcp-server restart
-```
+## Passo 1: Instalar o Servidor DHCP
+1. **Atualize os pacotes do sistema:**
+   ```bash
+   sudo apt-get update
+   ```
+
+2. **Instale o serviço DHCP:**
+   ```bash
+   sudo apt-get install -y isc-dhcp-server
+   ```
+
+3. **Renomeie o arquivo de configuração padrão:**
+   ```bash
+   sudo mv /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.bkp
+   ```
+
+4. **Copie o arquivo de configuração personalizado:**
+   Certifique-se de que o arquivo de configuração está no caminho correto antes de executar este comando.
+   ```bash
+   sudo cp /vagrant_config/DHCP/dhcpd.conf /etc/dhcp/dhcpd.conf
+   ```
+
+---
+
+## Passo 2: Reiniciar o Serviço DHCP
+1. **Reinicie o serviço para aplicar as configurações:**
+   ```bash
+   sudo service isc-dhcp-server restart
+   ```
+
+2. **Verifique o status do serviço:**
+   ```bash
+   sudo service isc-dhcp-server status
+   ```
+
 
 
 
