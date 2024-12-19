@@ -39,7 +39,7 @@
    zone "exemplo.local" {
     type master;
     file "/etc/bind/db.exemplo.local";
-};
+    };
    ```
 
 3. **Crie o arquivo de zona:**
@@ -50,21 +50,31 @@
 4. **Adicione as configurações da zona DNS: Exemplo de configuração para o arquivo db.exemplo.local:**
    ```bash
    $TTL    604800
-@       IN      SOA     ns.exemplo.com. root.exemplo.com. (
+    @       IN      SOA     ns.exemplo.com. root.exemplo.com. (
                         2         ; Serial
                         604800    ; Refresh
                         86400     ; Retry
                         2419200   ; Expire
                         604800 )  ; Negative Cache TTL
-;
-@       IN      NS      ns.exemplo.com.
-@       IN      A       192.168.1.100
-ns      IN      A       192.168.1.100
-www     IN      A       192.168.1.101
-ftp     IN      A       192.168.1.102
+    ;
+  @       IN      NS      ns.exemplo.com.
+  @       IN      A       192.168.1.100
+  ns      IN      A       192.168.1.100
+  www     IN      A       192.168.1.101
+  ftp     IN      A       192.168.1.102 ```
+
+
+
+5. **Reinicie o BIND usando o service:**
+   ```bash
+   sudo service bind9 restart
    ```
 
 
+6. **Verifique o status do BIND:**
+   ```bash
+    sudo service bind9 status
+   ```
 
 <br>
 <hr>
