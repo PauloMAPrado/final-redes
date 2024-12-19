@@ -8,16 +8,63 @@
 <hr>
 <h4>> Instalação</h4>
 
-```bash
-#Instalando o serviço DNS
-apt install -y bind9 bind9-doc bind9utils
-#Copiando o arquivo de opçoes
-cp /vagrant_config/DNS/named.conf.options /etc/bind/named.conf.options
-#Copiando o arquivo de configuração local
-cp /vagrant_config/DNS/named.conf.local /etc/bind/named.conf.local
-#Reiniciando o serviço
-systemctl restart bind9
-```
+
+## Passo 1: Instalar o DNS
+1. **Atualize os pacotes do sistema:**
+   ```bash
+   sudo apt-get update
+   ```
+
+2. **Instale o DNS:**
+   ```bash
+   sudo apt install bind9
+
+   ```
+
+3. **Verifique o status do bind**
+   ```bash
+   service bind9 status
+   ```
+
+---
+
+## Passo 2: Configurar o servidor DNS com o bind
+1. **Edite o arquivo de configuração do BIND: Abra o arquivo de configuração principal do BIND:**
+   ```bash
+   sudo nano /etc/bind/named.conf
+   ```
+
+2. **Adicione a zona DNS para o seu domínio:**
+   ```bash
+   zone "exemplo.local" {
+    type master;
+    file "/etc/bind/db.exemplo.local";
+};
+   ```
+
+3. **Crie o arquivo de zona:**
+   ```bash
+   sudo nano /etc/bind/db.meudominio.local
+   ```
+
+4. **Adicione as configurações da zona DNS: Exemplo de configuração para o arquivo db.exemplo.local:**
+   ```bash
+   $TTL    604800
+@       IN      SOA     ns.exemplo.com. root.exemplo.com. (
+                        2         ; Serial
+                        604800    ; Refresh
+                        86400     ; Retry
+                        2419200   ; Expire
+                        604800 )  ; Negative Cache TTL
+;
+@       IN      NS      ns.exemplo.com.
+@       IN      A       192.168.1.100
+ns      IN      A       192.168.1.100
+www     IN      A       192.168.1.101
+ftp     IN      A       192.168.1.102
+   ```
+
+
 
 <br>
 <hr>
