@@ -28,13 +28,8 @@
 
 ---
 
-## Passo 3: Testar o Servidor Apache
-1. **Abra um navegador e acesse o endereço do servidor:**
-   ```
 
----
-
-## Passo 5: Hospedar um Site
+## Passo 3: Hospedar um Site
 1. **Crie um arquivo HTML simples:**
    ```bash
    sudo nano /var/www/html/index.html
