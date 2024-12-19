@@ -16,18 +16,12 @@
 
 2. **Instale o serviço DHCP:**
    ```bash
-   sudo apt-get install -y isc-dhcp-server
+   sudo apt-get install isc-dhcp-server
    ```
 
-3. **Renomeie o arquivo de configuração padrão:**
+3. **Abra o arquivo de configuração padrão:**
    ```bash
-   sudo mv /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.bkp
-   ```
-
-4. **Copie o arquivo de configuração personalizado:**
-   Certifique-se de que o arquivo de configuração está no caminho correto antes de executar este comando.
-   ```bash
-   sudo cp /vagrant_config/DHCP/dhcpd.conf /etc/dhcp/dhcpd.conf
+   sudo nano /etc/dhcp/dhcpd.conf
    ```
 
 ---
