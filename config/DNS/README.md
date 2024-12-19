@@ -57,11 +57,11 @@
                         2419200   ; Expire
                         604800 )  ; Negative Cache TTL
     ;
-  @       IN      NS      ns.exemplo.com.
-  @       IN      A       192.168.1.100
-  ns      IN      A       192.168.1.100
-  www     IN      A       192.168.1.101
-  ftp     IN      A       192.168.1.102 ```
+      @       IN      NS      ns.exemplo.com.
+      @       IN      A       192.168.1.100
+      ns      IN      A       192.168.1.100
+      www     IN      A       192.168.1.101
+      ftp     IN      A       192.168.1.102 ```
 
 
 
