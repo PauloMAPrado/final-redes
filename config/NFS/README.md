@@ -31,7 +31,7 @@
    sudo nano /etc/exports
    ```
 
-4. **Adicione a seguinte linha ao arquivo (substitua `<IP_CLIENTE>` pelo IP do cliente ou use `*` para qualquer cliente):**
+4. **Adicione a seguinte linha ao arquivo (substitua `<IP_CLIENTE>` pelo IP do cliente):**
    ```ini
    /mnt/nfs_share <IP_CLIENTE>(rw,sync,no_subtree_check)
    ```
