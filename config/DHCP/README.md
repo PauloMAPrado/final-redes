@@ -42,7 +42,7 @@
 
 <br>
 <hr>
-<h4>Código dhcp.conf</h4>
+<h4>Código dhcp.conf (Exemplo)</h4>
 
 ```bash
 ddns-update-style none;
@@ -52,7 +52,7 @@ range 192.168.21.10 192.168.21.200;
 option subnet-mask 255.255.255.0;
 option domain-name "iftm.edu.br";
 option domain-name-servers 8.8.8.8, 8.8.4.4;
-option routers 192.168.X.254;
+option routers 192.168.21.254;
 default-lease-time 600;
 max-lease-time 7200;
 }
